@@ -1,1 +1,2 @@
-# STT2860project2
+# STT2860 Project 2
+

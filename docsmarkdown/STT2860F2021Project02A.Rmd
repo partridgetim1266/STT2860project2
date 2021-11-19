@@ -1,0 +1,153 @@
+---
+title: "Project 2A: Galton Data"
+author: "PUT YOUR NAME HERE"
+date: '`r format(Sys.time(), "%A, %B %d, %Y @ %I:%M %p")`'
+output: 
+  html_document: 
+    theme: cosmo
+    highlight: textmate
+    code_folding: hide
+---
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+***
+
+## Setup
+
+### Packages Used
+
+```{r loadpackages}
+
+```
+
+### Datasets Used
+
+```{r loaddatamain}
+
+```
+
+```{r loaddatasub}
+
+```
+
+### Collaborators
+
+ADD NAMES HERE OR WRITE "None"
+
+<hr>
+
+## Visualizations
+
+### Background of the Data
+
+Francis Galton, a cousin of Charles Darwin, studied the relationship between parent heights and the heights of their offspring. His pioneering [1886 article](https://galton.org/essays/1880-1889/galton-1886-jaigi-regression-stature.pdf) is the first appearance of regression analysis in print. He originated many statistical terms and concepts, including regression, correlation, deviate, quartile, and percentile, plus median for the midpoint of a distribution. The `galtonheightdata` dataset was [created under the direction of Dr. James A. Hanley](http://www.medicine.mcgill.ca/epidemiology/hanley/galton/) using Galton's [original paper notebooks](http://www.medicine.mcgill.ca/epidemiology/hanley/galton/notebook/index.html) containing the measurement data. You can access the `galtonfamiliesmain.csv` and `galtonfamiliessub.csv` datasets from their [description](https://stat-jet-asu.github.io/Datasets/InstructorDescriptions/galtonheightdata.html) page, which also contains variable definitions.
+
+### Create Analysis Datasets
+
+#### Dataset #1
+
+Load the `galtonfamiliesmain.csv` and `galtonfamiliessub.csv` datasets above under the **Setup** header and use `glimpse()` to explore their structures. Use your code from Project 1 and/or draw from the Project 1 solutions to assemble a dataset below that meets the following criteria. Use `datatable()` from the DT package to display the result.
+
+* contains these variables:
+   * `familyid` = ID number of the family, with `136A` recoded as `205`
+   * `num_children`= the number of children in the family
+   * `father_ht` = the height of the father
+   * `mother_ht` = the "transmuted" (per Galton) height of the mother
+   * `midparent` = the average of the parents' heights
+   * `child_sex`= whether the child is a son or a daughter, all lower case
+   * `child_ht` = the height of the child with daughter heights "transmuted"
+   
+* is arranged according to:
+   * ascending order of familyid
+   * sons before daughters within family
+   * in order of height within each sex of child
+
+```{r assembledata1}
+
+```
+
+#### Dataset #2
+
+Select the variables `familyid` and `num_children` and reduce the dataset so that it contains only one row per family. Again, use `datatable()` from the DT package to display the result.
+
+```{r assembledata2}
+
+```
+
+### Part 1: Parent/Child Heights
+
+#### Galton's Visualization
+
+In his original paper (linked above), Galton created several tables and diagrams. His "Diagram Based on Table 1" of them is similar in concept to a scatterplot. Rather than dots, he grouped/tabulated the data, and then used the count of how many people were grouped at the coordinate pairs in his grid, with child as the x-axis and mid-parent as the y-axis. There are two scales: inches and deviations from 68.25 inches.
+
+```{r galtonscatterplot, echo = FALSE}
+knitr::include_graphics(path = "../images/galtonplot.png")
+```
+
+#### Updated Scatterplot #1
+
+Create a scatterplot of child height (x-axis) versus mid-parent height (y-axis). Ordinarily, we might reverse the axes here because analysts would be more likely to model child height as a function of parent height, but we want to be able to compare the updated plot to Galton's original. Make your dots larger than the default and adjust transparency (`alpha`) to correct for overplotting and help show the density of points. 
+
+Also include the following.
+
+* use `color` in the `aes` to differentiate sons versus daughters
+* use `scale_color_manual()` to choose two informative colors
+* scale both axes so that there is a tick mark at every whole inch
+* use `coord_fixed()` so that the axes have the same unit spacing
+* add better x- and y-axis labels, including the units of measure
+* add an informative title (you may optionally include a subtitle)
+* add `color =` to `labs()` to set the legend title to `"gender of child"` 
+* use `theme_linedraw()` to add some additional plot formatting
+* use `theme()` to move the legend to the bottom of the scatterplot
+
+```{r updatedscatterplot1}
+
+```
+
+#### Updated Scatterplot #2
+
+Remove the color coding for sons versus daughters from your plot, as well as any other coding related to it. Instead, choose n single color for the points and adjust both `size` and transparency (`alpha`) as needed to correct for overplotting and help show the density of points. Reset the `aes` so child height is the `x` variable and midparent height is the `y` variable. Add a fitted *straight* line to the plot. Update your `labs` accordingly.
+
+```{r updatedscatterplot2}
+
+```
+
+### Part 2: Number of Children
+
+Create a barplot to show the distribution of the number of children per family. Set the bars to something other than the default `width`. Scale the x-axis so that there is a tick mark for each bar. Choose appropriate colors, labels, themes, and/or and other types of formatting that you feel will enhance the meaning or visual appearance of the plot.
+
+```{r childrenbarplot}
+
+```
+
+## Questions
+
+**Question 1:** Do you think that your scatterplots are an improvement over Galton's original diagram? Are there any modifications and/or additions you would make to enhance the clarity or usefulness of your plots?
+
+**ANSWER**
+
+ERASE THIS TEXT AND ANSWER QUESTION HERE
+
+**Question 2:** Explain the rationale behind the choices you made when creating your scatterplots and barplot, such as size, color, transparency, or other features. What motivated your decisions? 
+
+**ANSWER**
+
+ERASE THIS TEXT AND ANSWER QUESTION HERE
+
+**Question 3:** Considering best practices, how does using `coord_fixed()` enhance the authenticity of the information shown in the scatterplots, such as the relationship and spread of the data?
+
+**ANSWER**
+
+ERASE THIS TEXT AND ANSWER QUESTION HERE
+
+***
+```{r}
+sessionInfo()
+```
+
