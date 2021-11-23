@@ -112,7 +112,7 @@ Also include the following.
 
 #### Updated Scatterplot #2
 
-Remove the color coding for sons versus daughters from your plot, as well as any other coding related to it. Instead, choose n single color for the points and adjust both `size` and transparency (`alpha`) as needed to correct for overplotting and help show the density of points. Reset the `aes` so child height is the `x` variable and midparent height is the `y` variable. Add a fitted *straight* line to the plot. Update your `labs` accordingly.
+Remove the color coding for sons versus daughters from your plot, as well as any other coding related to it. Instead, choose n single color for the points and adjust both `size` and transparency (`alpha`) as needed to correct for overplotting and help show the density of points. Reset the `aes` so child height is the `y` variable and midparent height is the `x` variable. Add a fitted *straight* line to the plot. Update your `labs` accordingly.
 
 ```{r updatedscatterplot2}
 

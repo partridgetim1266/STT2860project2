@@ -92,7 +92,7 @@ Hint: You can use `count()` to find out how many of each `type` of program there
 
 ### Part 3: Bar Plot
 
-Create a horizontal barplot to show the frequencies of the various `rating` categories for programs on Disney+ (i.e., use `y =` rather than `x =` for the variable you are plotting). Use faceting by `type` so that you have side-by-side plots for the different program types. Add an appropriate title and axis labels, as well as other formatting of your choice to enhance effectiveness/appearance.
+Create a horizontal barplot to show the frequencies of the various `rating` categories for programs on Disney+ (i.e., use `y =` rather than `x =` for the variable you are plotting). You will need to remove a couple `NA` values first. Use faceting by `type` so that you have side-by-side plots for the different program types. Add an appropriate title and axis labels, as well as other formatting of your choice to enhance effectiveness/appearance. 
 
 ```{r}
 
