@@ -1,0 +1,70 @@
+---
+title: "Project 2 Presentation"
+author: "Tim Partridge"
+date: '`r format(Sys.time(), "%A, %B %d, %Y @ %I:%M %p")`'
+output: 
+  html_document: 
+    theme: cosmo
+    highlight: textmate
+    code_folding: hide
+---
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+***
+
+```{r loadpackages}
+library(dplyr)
+library(tidyverse)
+library(readxl)
+library(jsonlite)
+library(knitr)
+library(writexl)
+library(DT)
+library(waffle)
+```
+
+
+```{r}
+billionaire_data <- read_csv("~/git_repositories/STT2860project2/dataraw/billionaires_2021_10_31.csv")
+glimpse(billionaire_data)
+
+covid_data <- read_xlsx("~/git_repositories/STT2860project2/dataraw/CDCcovid19deaths20211027.xlsx", sheet = 1)
+glimpse(covid_data)
+```
+
+## Visualizations
+
+### Billionaire Visualization
+
+```{r}
+ggplot(billionaire_data, aes(x = Total_Net_Worth_Bil, y = YTDChange_Bil, color = Industry)) +
+  geom_point(alpha = 0.3, size = 2) +
+  coord_fixed() +
+  labs(title = "Total Net Worth in Billions vs YTD Change in billions", x = "Net Worth (bil)", y = "YTD change (bil)")
+```
+
+This plot shows the relationship between billionaires total net worth and their year to date change in billions. The color shows which industry they are in. As you can see, the higher a billionaires net worth is, the higher their likely year to date change. Most of the highest are also in the tech industry.
+
+### Ramen Rating Visualization
+
+```{r}
+covid_data <- covid_data %>%
+  filter(`Age Group` != "All Ages",
+         Sex != "All Sexes")
+ggplot(covid_data, aes(x = covid_data$`Start Date`, y = covid_data$`COVID-19 Deaths`, color = covid_data$`Age Group`)) +
+  geom_line() +
+  facet_wrap(~Sex)
+```
+
+I used this dataset as covid is still a thing, and I thought it would be cool to look at the deaths over time. This plot shows the deaths over time from covid of all ages separated by sex. There doesn't appear to be much difference between sex, however there is a huge difference between age groups. The younger age groups barely reach high at all whereas all the peaks are from the older age groups.
+
+***
+```{r}
+sessionInfo()
+```
